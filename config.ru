@@ -1,2 +1,2 @@
-require 'vactionists'
+require 'vacationists'
 run Sinatra::Application
