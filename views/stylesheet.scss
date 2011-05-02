@@ -1,0 +1,30 @@
+body {
+  color: #fff;
+  background: #000;
+  font-family: futura, helvetica;
+  font-size: 1em;
+  
+  h1 {
+    font-size: 3em;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-align: center;
+    line-height: 1.5em;
+    margin-bottom: 0;
+  }
+  
+  p {
+    text-align: center;
+    color: #555;
+  }
+  
+  a {
+    color: pink;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #999;
+  }
+  
+}

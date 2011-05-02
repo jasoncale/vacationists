@@ -1,0 +1,5 @@
+config.yml
+.bundle
+log/*
+tmp/*
+.sass-cache/*
