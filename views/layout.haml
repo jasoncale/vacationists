@@ -1,12 +1,18 @@
 !!!
 %html
   %head
-    %title The Vacationists
+    %title Vacationists
     %meta{"http-equiv" => "X-UA-Compatible", :content => "chrome=1"}
     :plain
       <!--[if gte IE 7]><!-->
-        <link rel="stylesheet" href="/style.css" type="text/css" media="screen">    
+        <link rel="stylesheet" href="/style.css" type="text/css" media="screen">
       <!-- <![endif]-->
   %body
-    %h1 The Vacationists
-    =yield
+    #content
+      %h1 Vacationists
+      =yield
+      %p.download
+        %a{:href => "http://vacationists.bandcamp.com/download_tralbum", :title => "Download from bandcamp"}Download ep on mp3
+
+    %script{:src=> "http://code.jquery.com/jquery-1.5.min.js", :type => "text/javascript", :charset => "utf-8"}
+    %script{:src=> "/j/site.js", :type => "text/javascript", :charset => "utf-8"}

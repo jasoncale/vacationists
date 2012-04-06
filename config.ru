@@ -1,2 +1,2 @@
-require 'vacationists'
-run Sinatra::Application
+require './vacationists'
+run Vacationists
