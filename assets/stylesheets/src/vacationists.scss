@@ -4,8 +4,7 @@
 body {
   color: #000;
   background: #fff;
-  font-family: futura, helvetica;
-  font-size: 1em;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   @media screen and (min-width: 600px) {
     background: url(/i/vbg.jpg);
@@ -13,9 +12,13 @@ body {
 }
 
 #content {
-  background: red;
+  background: #f9eeec;
+  padding-bottom: 2em;
+  border-bottom: 1px solid #cb7459;
 
   @media screen and (min-width: 600px) {
+    padding: 0;
+    border: none;
     width: 530px;
     height: 530px;
     position: absolute;
@@ -28,6 +31,7 @@ body {
 
   h1 {
     font-size: 2.5em;
+    font-family: futura, helvetica;
     text-transform: uppercase;
     letter-spacing: 0;
     width: 75%;
@@ -43,19 +47,28 @@ body {
   }
 
   a:hover {
-    color: pink;
+    color: #cb7459;
   }
 
   #track-listing {
     margin: 0 auto;
     color: #333;
-    width: 65%;
-    padding: 0 0 0 0;
+    padding: 0 0 0 4em;
+
+    @media screen and (min-width: 600px) {
+      padding-left: 5em;
+      width: 65%;
+    }
 
     li {
       font-size: 0.92em;
       line-height: 1.25em;
       position: relative;
+      margin-bottom: 1.25em;
+
+      p {
+        margin: 0;
+      }
 
       a {
         &:hover, &.playing, &.paused {
@@ -72,14 +85,14 @@ body {
         }
 
         &.playing {
-          color: plum;
+          color: #654d81;
           &:after {
             background-position-y: -11px;
           }
         }
 
         &.paused {
-          color: pink;
+          color: #cb7459;
           background-position-y: -3px;
         }
       }
@@ -93,13 +106,19 @@ body {
         top: 0;
         left: 0;
       }
+
+      em.state {
+        text-transform: italic;
+        font-size: 0.9em;
+        line-height: 1em;
+      }
     }
   }
 
   p.download {
     width: 65%;
     margin: 2.5em auto 0 auto;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #583e26;
     padding-top: 0.75em;
     text-align: center;
     font-size: 0.85em;

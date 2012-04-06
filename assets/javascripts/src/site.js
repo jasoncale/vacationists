@@ -26,7 +26,10 @@ $(document).ready(function() {
             this.stop();
           };
         });
+        $('a[data-track="'+this.id+'"]').siblings('em.state').text(" is playing");
       }).onComplete(function () {
+        $('a[data-track="'+this.id+'"]').siblings('em.state').remove();
+        fuck();
         var currentTrack = tracks.indexOf(player);
         if (currentTrack < (tracks.length - 1)) {
           tracks[currentTrack + 1].play();
@@ -41,6 +44,9 @@ $(document).ready(function() {
     var state = jwplayer($(this).attr('data-track')).getState();
 
     $('.toggle-track, #content').removeClass('playing paused');
+    $('#track-listing em.state').remove();
+
+    $(this).after('<em class="state" />');
 
     if (state == "PLAYING" || state == "BUFFERING") {
       $(this).addClass('playing');
@@ -48,9 +54,10 @@ $(document).ready(function() {
     } else if (state == "PAUSED") {
       $(this).addClass('paused');
       $('#content').addClass('paused');
+      $(this).siblings('em.state').text(" is paused");
     }
 
     return false;
-  })
+  });
 
 });
