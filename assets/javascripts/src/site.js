@@ -29,7 +29,6 @@ $(document).ready(function() {
         $('a[data-track="'+this.id+'"]').siblings('em.state').text(" is playing");
       }).onComplete(function () {
         $('a[data-track="'+this.id+'"]').siblings('em.state').remove();
-        fuck();
         var currentTrack = tracks.indexOf(player);
         if (currentTrack < (tracks.length - 1)) {
           tracks[currentTrack + 1].play();
