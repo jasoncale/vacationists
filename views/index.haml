@@ -1,18 +1,36 @@
-%ol.track-listing
-  -@album.tracks.each do |track|
-    -track_dom = "track-#{track.track_id}"
-    %li.clearfix
-      %p
-        %a.toggle-track{:href => track.streaming_url, "data-track" => track_dom }=track.title
-      -if track.streaming_url.blank?
-        %span.no-streaming Not available online
-      -else
-        %a.track{:id => track_dom, :href => track.streaming_url, "data-duration" => track.duration }Listen
+.player.circle
+  %h1 Vacationists
 
-%ul.links
-  %li.download
-    %a{href: "http://vacationists.bandcamp.com/download?enc=mp3-320&id=266867348&ts=1333734073.3664342390&tsig=06d5044ffad1a9dfb99fbb92f34ed224&type=album", title: "Download from bandcamp"}Download EP (mp3)
-    %li.about
-      %a{href: "#about", title: "About the band"} About
-    %li.contact
-      %a{href: "#contact", title: "Contact the band"} Contact
+  %ol.track-listing
+    -@album.tracks.each do |track|
+      -track_dom = "track-#{track.track_id}"
+      %li.clearfix
+        %p
+          %a.toggle-track{:href => track.streaming_url, "data-track" => track_dom }=track.title
+        -if track.streaming_url.blank?
+          %span.no-streaming Not available online
+        -else
+          %a.track{:id => track_dom, :href => track.streaming_url, "data-duration" => track.duration }Listen
+
+  %ul.links
+    %li.download
+      %a{href: "http://vacationists.bandcamp.com/download?enc=mp3-320&id=266867348&ts=1333734073.3664342390&tsig=06d5044ffad1a9dfb99fbb92f34ed224&type=album", title: "Download from bandcamp"}Download EP (mp3)
+      %li.about
+        %a{href: "#about", title: "About the band"} About
+      %li.contact
+        %a{href: "#contact", title: "Contact the band"} Contact
+
+
+#about.circle
+  .inner
+    %h2
+      About
+    %p
+      %strong Jason Cale
+      %em (vocals / piano / guitar)
+      %br
+      %strong Luke Novak
+      %em (vocals / guitars / sax / bass / percussion / everything else)
+    %p This EP is their first release: a collection of old songs, reworked, arranged and self-recorded during 2011/12.
+
+#contact.circle
