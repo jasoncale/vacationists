@@ -44,7 +44,7 @@ $(document).ready(function() {
     var state = jwplayer($(this).attr('data-track')).getState();
 
     $('.toggle-track, #content').removeClass('playing paused');
-    $('#track-listing em.state').remove();
+    $('.track-listing em.state').remove();
 
     $(this).after('<em class="state" />');
 
@@ -60,4 +60,7 @@ $(document).ready(function() {
     return false;
   });
 
+   var grid = new hashgrid({
+     numberOfGrids: 1
+   });
 });

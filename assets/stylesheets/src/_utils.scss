@@ -65,3 +65,28 @@
 @mixin no-transitions {
   @include transition(none, 0);
 }
+
+$base_font_size_in_px: 16 !default;
+$baseline_in_px: 24 !default;
+
+@mixin scaled_type($size_in_px, $line_height_in_px: 24, $margin_ratio: 1) {
+  $vertical_rhythm: ($baseline_in_px / $size_in_px);
+
+  margin: 0;
+  font-size: #{($size_in_px/$base_font_size_in_px)}em;
+  line-height: #{$vertical_rhythm * ($line_height_in_px / $baseline_in_px)}em;
+
+  @if $margin_ratio {
+    @include scaled_margin_bottom($size_in_px, $line_height_in_px, $margin_ratio);
+  }
+}
+
+@mixin scaled_margin_top($size_in_px, $line_height_in_px: 24, $ratio: 1) {
+  $vertical_rhythm: ($line_height_in_px / $size_in_px) * $ratio;
+  margin-top: #{$vertical_rhythm}em;
+}
+
+@mixin scaled_margin_bottom($size_in_px, $line_height_in_px: 24, $ratio: 1) {
+  $vertical_rhythm: ($line_height_in_px / $size_in_px) * $ratio;
+  margin-bottom: #{$vertical_rhythm}em;
+}
