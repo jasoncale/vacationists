@@ -1,5 +1,7 @@
 var tracks = [];
 $(document).ready(function() {
+  $('body').addClass('js-enabled');
+
   $('.track').each(function () {
     if ($(this).attr('href')) {
       var player = jwplayer($(this).attr('id')).setup({
@@ -39,8 +41,9 @@ $(document).ready(function() {
   });
 
   $('.toggle-track').click(function () {
-    jwplayer($(this).attr('data-track')).play();
-    var state = jwplayer($(this).attr('data-track')).getState();
+    var track = jwplayer($(this).attr('data-track'));
+    track.play();
+    var state = track.getState();
 
     $('.toggle-track, #content').removeClass('playing paused');
     $('.track-listing em.state').remove();
@@ -56,7 +59,45 @@ $(document).ready(function() {
       $(this).siblings('em.state').text(" is paused");
     }
 
+    var trackClass = "track_" + (tracks.indexOf(track)+1);
+
+    if (!$('.images').hasClass(trackClass)) {
+      $('.images').attr('class', 'images '+trackClass).fadeIn('slow');
+    }
+
     return false;
+  });
+
+  $('a.moreinfo').click(function () {
+    var target = $($(this).attr('href'));
+    if (target) {
+      if (target.hasClass('active')) {
+        target.css('z-index', '-1').animate({ left: '50%' }, function () {
+          target.removeClass('active').hide();
+        });
+        $('.player').animate({ left: '50%' });
+      } else {
+        // close any active panels
+        $('.info.active').each(function () {
+          var _this = $(this);
+          _this.css('z-index', '-1').animate({ left: '30%' }, function () {
+            _this.removeClass('active').hide(function () {
+              _this.css('left', '50%');
+            });
+          });
+        });
+
+        target.addClass('active').show();
+        target.animate({left: '65%', opacity: 1}, function () {
+          target.css('z-index', '10');
+        });
+        $('.player').animate({ left: '30%' });
+      }
+    }
+
+    return false;
+  }).each(function () {
+    $($(this).attr('href')).hide();
   });
 
    var grid = new hashgrid({

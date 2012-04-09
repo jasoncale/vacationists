@@ -18,24 +18,109 @@ body {
     border: none;
     width: $diameter;
     height: $diameter;
-    position: absolute;
+    position: relative;
     left: 50%;
     margin-left: -#{($diameter/2)};
     top: 0;
     @include rounded(530px);
   }
+
+  @include transition(left);
+}
+
+body.js-enabled {
+  #content {
+    #about, #contact {
+      @media screen and (min-width: 600px) {
+        left: 50%;
+        padding-bottom: 0;
+        position: absolute;
+        top: 4em;
+        z-index: -1;
+      }
+    }
+
+    #about {
+      @media screen and (min-width: 790px) {
+        top: 6em;
+      }
+    }
+
+    #content {
+      @media screen and (min-width: 790px) {
+        top: 8em;
+      }
+    }
+  }
+}
+
+@mixin track_image($id, $img, $width, $height, $top, $left) {
+  .img_#{$id} {
+    background: url(/assets/#{$img}) no-repeat;
+    width: $width;
+    height: $height;
+    top: $top;
+    left: $left;
+  }
+}
+
+.images {
+  position: absolute;
+  display: none;
+
+  .img_1, .img_2 {
+    position: absolute;
+    z-index: -1;
+  }
+
+  @media screen and (min-width: 600px) {
+    display: block;
+  }
+
+  &.track_3 {
+   @include track_image(1, 'tr_a_1.jpg', 311px, 538px, 148px, 240px);
+   @include track_image(2, 'tr_a_2.jpg', 467px, 449px, 238px, 1017px);
+  }
+
+  &.track_5 {
+   @include track_image(1, 'tr_b_1.jpg', 777px, 632px, 414px, 553px);
+  }
+
+  &.track_1 {
+   @include track_image(1, 'tr_f_1.jpg', 629px, 635px, 237px, 86px);
+   @include track_image(2, 'tr_f_2.jpg', 322px, 635px, 237px, 859px);
+  }
+
+  &.track_6 {
+   @include track_image(1, 'tr_c_1.jpg', 466px, 726px, 57px, 86px);
+   @include track_image(2, 'tr_c_2.jpg', 471px, 635px, 237px, 859px);
+  }
+
+  &.track_4 {
+   @include track_image(1, 'tr_d.jpg', 1095px, 733px, 139px, 86px);
+  }
+
+  &.track_2 {
+   @include track_image(1, 'tr_e.jpg', 783px, 830px, 229px, 547px);
+  }
 }
 
 #content {
-
   .player {
     background: #f9eeec;
-
     @include circle(530px);
+    left: 40%;
 
     @media screen and (min-width: 600px) {
-      left: 30%;
       top: 2.4em;
+    }
+
+    .inner {
+      @media screen and (min-width: 600px) {
+        width: 75%;
+        margin: 0 auto;
+      }
+      padding-top: 4.4em;
     }
   }
 
@@ -47,8 +132,6 @@ body {
     margin-right: auto;
     text-align: center;
     text-transform: uppercase;
-    width: 75%;
-    margin-top: 1.5em;
 
     @media screen and (min-width: 600px) {
       padding-top: 1.5em;
@@ -65,13 +148,12 @@ body {
   }
 
   .track-listing {
-    margin: 0 auto;
     color: #333;
     padding: 0 0 0 4em;
+    margin-bottom: 2.6em;
 
     @media screen and (min-width: 600px) {
-      padding-left: 5.5em;
-      width: 64%;
+      padding-left: 4.5em;
     }
 
     li {
@@ -135,15 +217,10 @@ body {
   ul.links {
     @include scaled_type(13, 20, 0.5);
     list-style: none;
-    margin: 4em auto 0 auto;
 
     @media screen and (min-width: 600px) {
-      padding: 0 0 0 15%;
-      width: 71%;
+      padding-left: 15%;
     }
-
-    padding-top: 0.75em;
-
 
     li {
       display: inline;
@@ -161,31 +238,12 @@ body {
     }
   }
 
-  #contact {
-
-  }
-
-  #about {
-    position: absolute;
-    @include circle(350px);
-    background: #5c3e74;
+  #about, #contact {
     color: #dce9e0;
     padding-bottom: 2em;
 
-    @media screen and (min-width: 600px) {
-      top: 20%;
-      left: 75%;
-      padding-bottom: 0;
-    }
-
     .inner {
-      width: 80%;
-
-      @media screen and (min-width: 600px) {
-        width: 70%;
-      }
       margin: 0 auto;
-      padding-top: 5.25em;
 
       ul {
         list-style: none;
@@ -209,6 +267,47 @@ body {
         em {
           @include scaled_type(14, 20, 0.5);
         }
+      }
+    }
+  }
+
+  #about {
+    @include circle(420px);
+    background: #5c3e74;
+    .inner {
+      width: 80%;
+      padding-top: 5.4em;
+
+      @media screen and (min-width: 600px) {
+        width: 70%;
+      }
+
+      a {
+        font-weight: bold;
+        color: #dce9e0;
+        text-decoration: underline;
+      }
+
+      p.credits {
+        @include scaled_type(12, 20, 0.5);
+      }
+    }
+  }
+
+  #contact {
+    @include circle(220px);
+    background: #a43b30;
+    .inner {
+      width: 90%;
+      padding-top: 3.25em;
+
+      h2 {
+        text-align: center;
+      }
+
+      li {
+        text-align: center;
+        @include scaled_type(16, 20, 1);
       }
     }
   }
