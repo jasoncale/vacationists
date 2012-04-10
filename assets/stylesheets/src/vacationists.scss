@@ -42,6 +42,8 @@ body.js-enabled {
     }
 
     #about {
+      top: 1.5em;
+
       @media screen and (min-width: 790px) {
         top: 6em;
       }
@@ -244,6 +246,8 @@ body.js-enabled {
 
     .inner {
       margin: 0 auto;
+      width: 80%;
+      padding-top: 1.5em;
 
       ul {
         list-style: none;
@@ -275,10 +279,8 @@ body.js-enabled {
     @include circle(420px);
     background: #5c3e74;
     .inner {
-      width: 80%;
-      padding-top: 5.4em;
-
       @media screen and (min-width: 600px) {
+        padding-top: 5.4em;
         width: 70%;
       }
 
@@ -297,16 +299,18 @@ body.js-enabled {
   #contact {
     @include circle(220px);
     background: #a43b30;
-    .inner {
-      width: 90%;
-      padding-top: 3.25em;
 
-      h2 {
-        text-align: center;
+    .inner {
+      @media screen and (min-width: 600px) {
+        width: 90%;
+        padding-top: 3.25em;
+
+        h2, li {
+          text-align: center;
+        }
       }
 
       li {
-        text-align: center;
         @include scaled_type(16, 20, 1);
       }
     }

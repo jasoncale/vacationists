@@ -75,39 +75,60 @@ $(document).ready(function() {
   });
 
   $('a.moreinfo').click(function () {
-    var target = $($(this).attr('href'));
-    if (target) {
-      if (target.hasClass('active')) {
-        target.css('z-index', '-1').animate({ left: '50%' }, function () {
-          target.removeClass('active').hide();
-        });
-        $('.player').animate({ left: '50%' });
-      } else {
-        // close any active panels
-        $('.info.active').each(function () {
-          var _this = $(this);
-          _this.css('z-index', '-1').animate({ left: '30%' }, function () {
-            _this.removeClass('active').hide(function () {
-              _this.css('left', '50%');
+    if (($(window).width() > 600)) {
+      var target = $($(this).attr('href'));
+      if (target && ($(window).width() > 600)) {
+        if (target.hasClass('active')) {
+          var currTop = target.css('top');
+          target.css('z-index', '-1').animate({ left: '50%', top: $('.player').css('top') }, function () {
+            target.removeClass('active').hide().css({top: currTop});
+          });
+          $('.player').animate({ left: '50%' });
+        } else {
+          // close any active panels
+          $('.info.active').each(function () {
+            var _this = $(this);
+            var currTop = _this.css('top');
+            _this.css('z-index', '-1').animate({ left: '30%', top: $('.player').css('top') }, function () {
+              _this.removeClass('active').hide(function () {
+                _this.css({left: '50%', top: currTop});
+              });
             });
           });
-        });
 
-        target.addClass('active').show();
-        target.animate({left: '65%', opacity: 1}, function () {
-          target.css('z-index', '10');
-        });
-        $('.player').animate({ left: '30%' });
+          var currTop = target.css('top');
+          target.addClass('active').css({top: $('.player').css('top')}).show();
+          target.animate({left: '65%', opacity: 1, top: currTop}, function () {
+            target.css('z-index', '10');
+          });
+          $('.player').animate({ left: '30%' });
+        }
       }
-    }
 
-    return false;
+      return false;
+    };
   }).each(function () {
-    $($(this).attr('href')).hide();
+    if ($(window).width() > 600) {
+      $($(this).attr('href')).hide();
+    }
   });
 
   $(window).resize(function () {
     $('.images div').height($(document).height());
+    if ($(window).width() < 600) {
+      $('a.moreinfo').each(function () {
+        $($(this).attr('href')).show();
+      });
+    } else {
+      $('a.moreinfo').each(function () {
+        var target = $($(this).attr('href'));
+        if (target.hasClass('active')) {
+          target.show();
+        } else {
+          target.hide();
+        }
+      });
+    }
   });
 
    // var grid = new hashgrid({
