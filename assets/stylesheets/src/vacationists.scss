@@ -65,7 +65,9 @@ body.js-enabled {
 }
 
 .images {
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   display: none;
 
   .img_1, .img_2 {
