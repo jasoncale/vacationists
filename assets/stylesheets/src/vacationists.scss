@@ -6,6 +6,7 @@ body {
   color: #000;
   background: #f9eeec;
   font: 100%/1.5 futura, "Helvetica Neue", Helvetica, Arial, sans-serif; *font-size: 1em;
+  overflow:auto;
 
   @media screen and (min-width: 600px) {
     background: url(/assets/vbg.jpg);
@@ -56,36 +57,24 @@ body.js-enabled {
 
 @mixin track_image($id, $img, $width, $height, $top, $left) {
   .img_#{$id} {
-    background: url(/assets/#{$img}) no-repeat;
-    width: $width;
-    height: $height;
-    top: $top;
-    left: $left;
+    background: url(/assets/#{$img}) $left $top no-repeat;
+    width: 100%;
+    height: 100%;
   }
 }
 
 .images {
-  position: fixed;
-  top: 0;
-  left: 0;
   display: none;
 
   .img_1, .img_2 {
     position: absolute;
     z-index: -1;
+    top: 0;
+    left: 0;
   }
 
   @media screen and (min-width: 600px) {
     display: block;
-  }
-
-  &.track_3 {
-   @include track_image(1, 'tr_a_1.jpg', 311px, 538px, 148px, 240px);
-   @include track_image(2, 'tr_a_2.jpg', 467px, 449px, 238px, 1017px);
-  }
-
-  &.track_5 {
-   @include track_image(1, 'tr_b_1.jpg', 777px, 632px, 414px, 553px);
   }
 
   &.track_1 {
@@ -93,17 +82,26 @@ body.js-enabled {
    @include track_image(2, 'tr_f_2.jpg', 322px, 635px, 237px, 859px);
   }
 
-  &.track_6 {
-   @include track_image(1, 'tr_c_1.jpg', 466px, 726px, 57px, 86px);
-   @include track_image(2, 'tr_c_2.jpg', 471px, 635px, 237px, 859px);
+  &.track_2 {
+   @include track_image(1, 'tr_e.jpg', 783px, 830px, 229px, 547px);
+  }
+
+  &.track_3 {
+   @include track_image(1, 'tr_a_1.jpg', 311px, 538px, 148px, 240px);
+   @include track_image(2, 'tr_a_2.jpg', 312px, 452px, 238px, 1017px);
   }
 
   &.track_4 {
-   @include track_image(1, 'tr_d.jpg', 1095px, 733px, 139px, 86px);
+   @include track_image(1, 'tr_d.jpg', 1095px, 729px, 148px, 82px);
   }
 
-  &.track_2 {
-   @include track_image(1, 'tr_e.jpg', 783px, 830px, 229px, 547px);
+  &.track_5 {
+   @include track_image(1, 'tr_b_1.jpg', 777px, 632px, 414px, 553px);
+  }
+
+  &.track_6 {
+   @include track_image(1, 'tr_c_1.jpg', 466px, 726px, 57px, 86px);
+   @include track_image(2, 'tr_c_2.jpg', 471px, 635px, 237px, 859px);
   }
 }
 

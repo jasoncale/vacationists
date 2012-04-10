@@ -100,7 +100,11 @@ $(document).ready(function() {
     $($(this).attr('href')).hide();
   });
 
-   var grid = new hashgrid({
-     numberOfGrids: 1
-   });
+  $(window).resize(function () {
+    $('.images div').height($(document).height());
+  });
+
+   // var grid = new hashgrid({
+   //   numberOfGrids: 1
+   // });
 });
