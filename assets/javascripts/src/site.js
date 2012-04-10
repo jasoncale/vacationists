@@ -1,4 +1,6 @@
 var tracks = [];
+var fadeInTimer;
+
 $(document).ready(function() {
   $('body').addClass('js-enabled');
 
@@ -62,7 +64,11 @@ $(document).ready(function() {
     var trackClass = "track_" + (tracks.indexOf(track)+1);
 
     if (!$('.images').hasClass(trackClass)) {
-      $('.images').attr('class', 'images '+trackClass).fadeIn('slow');
+      $('.images').attr('class', 'images '+trackClass).find('div').hide();
+      clearTimeout(fadeInTimer);
+      fadeInTimer = setTimeout(function () {
+        $('.images').find('div').fadeIn();
+      }, 2000);
     }
 
     return false;
