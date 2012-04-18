@@ -99,7 +99,7 @@ body.js-enabled {
   }
 
   &.track_6 {
-   @include track_image(1, 'tr_c_1.jpg', 466px, 726px, 57px, 86px);
+   @include track_image(1, 'tr_c_1.jpg', 466px, 726px, 57px, 84px);
    @include track_image(2, 'tr_c_2.jpg', 471px, 635px, 237px, 859px);
   }
 }
