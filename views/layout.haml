@@ -1,5 +1,13 @@
 !!!
-%html
+!!! 5
+-# paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js ie8 oldie"> <![endif]-->
+-# Consider adding an manifest.appcache: h5bp.com/d/Offline
+<!--[if gt IE 8]><!-->
+%html.no-js{ :lang => "en" }
+  <!--<![endif]-->
   %head
     %title Vacationists
     %meta{"http-equiv" => "X-UA-Compatible", content: "chrome=1"}

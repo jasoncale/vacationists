@@ -85,30 +85,33 @@ $(document).ready(function() {
 
     $('a.moreinfo').click(function() {
         if (($(window).width() > 600)) {
-            var target = $($(this).attr('href'));
+            var _link = $(this);
+            var target = $(_link.attr('href'));
             if (target && ($(window).width() > 600)) {
                 if (target.hasClass('active')) {
                     var currTop = target.css('top');
                     target.css('z-index', '-1').animate({
                         left: '50%',
-                        top: $('.player').css('top')
+                        top: centerBehindPlayer(target)
                     },
                     function() {
-                        target.removeClass('active').hide().css({
-                            top: currTop
-                        });
+                      _link.removeClass('active');
+                      target.removeClass('active').hide().css({
+                          top: currTop
+                      });
                     });
                     $('.player').animate({
                         left: '50%'
                     });
                 } else {
                     // close any active panels
+                    $('a.moreinfo.active').removeClass('active');
                     $('.info.active').each(function() {
                         var _this = $(this);
                         var currTop = _this.css('top');
                         _this.css('z-index', '-1').animate({
                             left: '30%',
-                            top: $('.player').css('top')
+                            top: centerBehindPlayer(_this)
                         },
                         function() {
                             _this.removeClass('active').hide(function() {
@@ -121,12 +124,12 @@ $(document).ready(function() {
                     });
 
                     var currTop = target.css('top');
+                    _link.addClass('active');
                     target.addClass('active').css({
-                        top: $('.player').css('top')
+                        top: centerBehindPlayer(target)
                     }).show();
                     target.animate({
                         left: '65%',
-                        opacity: 1,
                         top: currTop
                     },
                     function() {
@@ -145,6 +148,11 @@ $(document).ready(function() {
             $($(this).attr('href')).hide();
         }
     });
+
+    function centerBehindPlayer(target) {
+      var posBehindPlayer = (parseInt($('.player').css('top')) + ($('.player').outerHeight() / 2)) - (target.outerHeight() / 2) + "px";
+      return posBehindPlayer;
+    }
 
     var _afterResize = function() {
         $('.images div').height($(document).height());
@@ -216,7 +224,7 @@ $(document).ready(function() {
 
     repositionImages();
 
-    // var grid = new hashgrid({
-    //   numberOfGrids: 1
-    // });
+    var grid = new hashgrid({
+      numberOfGrids: 1
+    });
 });
