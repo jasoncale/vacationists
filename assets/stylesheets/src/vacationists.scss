@@ -2,10 +2,12 @@
 @import "utils";
 @import "grid";
 
+$futura: "futura-pt", futura, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
 body {
   color: #000;
   background: #f9eeec;
-  font: 100%/1.5 futura, "Helvetica Neue", Helvetica, Arial, sans-serif; *font-size: 1em;
+  font: 100%/1.5 #{$futura}; *font-size: 1em;
   overflow:auto;
 
   @media screen and (min-width: 600px) {
@@ -125,7 +127,7 @@ body.js-enabled {
 
   h1 {
     @include scaled_type(40, 20, 2);
-    font-family: futura, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: $futura;
     letter-spacing: 0;
     margin-left: auto;
     margin-right: auto;
@@ -158,7 +160,7 @@ body.js-enabled {
     li {
       @include scaled_type(14, 20, 0.5);
       position: relative;
-      font-family: futura, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: $futura;
 
       @media screen and (min-width: 600px) {
         @include scaled_type(15, 20, 0.5);
