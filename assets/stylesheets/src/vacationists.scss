@@ -29,7 +29,7 @@ body {
   }
 }
 
-body.js-enabled {
+html.has-js {
   #content {
     #about, #contact {
       @media screen and (min-width: 600px) {
@@ -201,6 +201,7 @@ body.js-enabled {
         height: 0;
         overflow: hidden;
       }
+
       object {
         position: absolute;
         top: 0;

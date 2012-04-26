@@ -7,7 +7,7 @@
         -track_dom = "track-#{track.track_id}"
         %li.clearfix
           %p
-            %a.toggle-track{:href => '#', "data-track" => track_dom }=track.title
+            %a.toggle-track{:href => "##{track_dom}", "data-track" => track_dom }=track.title
           -if track.streaming_url.blank?
             %span.no-streaming Not available online
           -else
