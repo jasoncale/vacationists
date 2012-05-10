@@ -125,25 +125,45 @@ Vacationists.Layout = (function() {
     }
 
     var initToggleLinks = function(sel) {
-        $(sel).click(function() {
-            Vacationists.Player.playTrackId($(this).attr('data-track'));
-            return false;
-        });
+      /*
+        We have bare 'listen' links present
+        when no js is available, so I have
+        used span elements as pointers to
+        the intended behaviour when js
+        is enabled. Therefore I will only
+        present users with clickable links
+        when they do what is intended.
+
+        This simply replaces the span
+        with an anchor which is then
+        given it's click functions..
+      */
+      $(sel).each(function () {
+        var link = $('<a></a>');
+        link.text($(this).text());
+        link.attr('href', $(this).attr('data-track-id'));
+        link.attr('data-track', $(this).attr('data-track'));
+        link.attr('class', $(this).attr('class'));
+        $(this).replaceWith(link);
+      });
+
+      $(sel).click(function() {
+          Vacationists.Player.playTrackId($(this).attr('data-track'));
+          return false;
+      });
     }
 
     var showTrackPictures = function(track) {
         var trackClass = "track_" + Vacationists.Player.currentTrackNumber();
 
         if (!$('.images').hasClass(trackClass)) {
-            $('.images').find('.image').fadeOut('slow',
+            clearTimeout(fadeInTimer);
+            $('.images').fadeOut('slow',
             function() {
                 $('.images').attr('class', 'images ' + trackClass);
                 repositionImages();
-                $('.images').find('.image').hide();
-
-                clearTimeout(fadeInTimer);
                 fadeInTimer = setTimeout(function() {
-                    $('.images').find('.image').fadeIn();
+                    $('.images').fadeIn('slow');
                 },
                 2000);
             });
